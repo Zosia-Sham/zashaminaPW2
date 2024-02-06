@@ -13,6 +13,8 @@
 		8E5BB42F2B22392C007D3349 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E5BB42E2B22392C007D3349 /* SceneDelegate.swift */; };
 		8E5BB4362B22392D007D3349 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E5BB4352B22392D007D3349 /* Assets.xcassets */; };
 		8E5BB4392B22392D007D3349 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E5BB4372B22392D007D3349 /* LaunchScreen.storyboard */; };
+		8E8148AE2B72C83B0091E9A6 /* WishCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8148AD2B72C83B0091E9A6 /* WishCalendarViewController.swift */; };
+		8E8148B02B72C8650091E9A6 /* WishEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8148AF2B72C8650091E9A6 /* WishEventCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		8E5BB4352B22392D007D3349 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8E5BB4382B22392D007D3349 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8E5BB43A2B22392D007D3349 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8E8148AD2B72C83B0091E9A6 /* WishCalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishCalendarViewController.swift; sourceTree = "<group>"; };
+		8E8148AF2B72C8650091E9A6 /* WishEventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishEventCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +67,8 @@
 				8E5BB4372B22392D007D3349 /* LaunchScreen.storyboard */,
 				8E5BB43A2B22392D007D3349 /* Info.plist */,
 				3F00EF232B6AAFF8007EC9CE /* WishStoringViewController.swift */,
+				8E8148AD2B72C83B0091E9A6 /* WishCalendarViewController.swift */,
+				8E8148AF2B72C8650091E9A6 /* WishEventCell.swift */,
 			);
 			path = zashaminaPW2;
 			sourceTree = "<group>";
@@ -139,8 +145,10 @@
 			files = (
 				8E5BB42D2B22392C007D3349 /* AppDelegate.swift in Sources */,
 				3F00EF212B6AAE63007EC9CE /* WishMakerViewController.swift in Sources */,
+				8E8148AE2B72C83B0091E9A6 /* WishCalendarViewController.swift in Sources */,
 				3F00EF242B6AAFF8007EC9CE /* WishStoringViewController.swift in Sources */,
 				8E5BB42F2B22392C007D3349 /* SceneDelegate.swift in Sources */,
+				8E8148B02B72C8650091E9A6 /* WishEventCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

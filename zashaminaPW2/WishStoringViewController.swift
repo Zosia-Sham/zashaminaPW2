@@ -1,5 +1,9 @@
 import UIKit
 
+private enum Constants {
+    static let cornerRadius: CGFloat = 10
+}
+
 final class WrittenWishCell: UITableViewCell {
     static let reuseId: String = "WrittenWishCell"
     
