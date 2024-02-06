@@ -5,8 +5,9 @@ enum Constants {
     static let green: String = "Green"
     static let blue: String = "Blue"
     static let title: String = "WishMaker"
-    static let description: String = "Hello. This is the WISH MAKER app.\nThe first wish is to change the background color."
-    static let buttonTitle: String = "hide/show sliders"
+    static let description: String = "Hello. This is the WISH MAKER app.\nThe first wish is to change the background color.\nThe second one is to store wishes to grant later."
+    static let hideButtonTitle: String = "hide/show sliders"
+    static let addWishButtonTitle: String = "my wishes"
     
     static let sliderMin: Double = 0
     static let sliderMax: Double = 1
@@ -16,7 +17,7 @@ enum Constants {
     static let sliderLeading: CGFloat = 20
     
     static let stackRadius: CGFloat = 20
-    static let stackBottom: CGFloat = -40
+    static let stackBottom: CGFloat = -50
     static let stackLeading: CGFloat = 20
     
     static let titleTop: CGFloat = 50
@@ -25,11 +26,13 @@ enum Constants {
     static let descriptionTop: CGFloat = 102
     static let descriptionLeading: CGFloat = 20
     
-    static let buttonTop: CGFloat = 174
+    static let buttonBottom: CGFloat = -50
     static let buttonWidth: Double = 0.4
     
     static let titleFontSize: CGFloat = 32
     static let descriptionFontSize: CGFloat = 16
+    
+    static let cornerRadius: CGFloat = 10
     
     static let zero: Int = 0
 }
@@ -77,13 +80,26 @@ final class CustomSlider: UIView {
     }
 }
 
-final class WishMakerViewController: UIViewController{
+final class WishMakerViewController: UIViewController {
+    private let titleView = UILabel()
+    private let descriptionView = UILabel()
+    private let stack = UIStackView()
+    private let hideButton: UIButton = UIButton(type: .system)
+    private let addWishButton: UIButton = UIButton(type: .system)
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        configureUI()
+        view.backgroundColor = .systemPink
+    }
+    
     private func configureUI() {
         view.backgroundColor = .systemPink
         configureTitle()
         configureDescription()
+        configureAddWishButton()
         configureSliders()
-        configureButton()
+        configureHideButton()
     }
     
     private func configureTitle() {
@@ -120,7 +136,6 @@ final class WishMakerViewController: UIViewController{
         stack.axis = .vertical
         view.addSubview(stack)
         stack.layer.cornerRadius = Constants.stackRadius
-        stack.clipsToBounds = true
         
         let sliderRed = CustomSlider(title: Constants.red, min: Constants.sliderMin, max: Constants.sliderMax)
         let sliderGreen = CustomSlider(title: Constants.green, min: Constants.sliderMin, max: Constants.sliderMax)
@@ -131,7 +146,7 @@ final class WishMakerViewController: UIViewController{
         }
         NSLayoutConstraint.activate([
             stack.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            stack.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: Constants.stackBottom),
+            stack.bottomAnchor.constraint(equalTo: addWishButton.topAnchor, constant: Constants.stackBottom),
             stack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.stackLeading)
         ])
         
@@ -154,32 +169,43 @@ final class WishMakerViewController: UIViewController{
         }
     }
     
-    private func configureButton() {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = .systemGray
-        button.setTitle(Constants.buttonTitle, for: .normal)
-        button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+    private func configureHideButton() {
+        hideButton.translatesAutoresizingMaskIntoConstraints = false
+        hideButton.backgroundColor = .systemGray
+        hideButton.setTitle(Constants.hideButtonTitle, for: .normal)
+        hideButton.layer.cornerRadius = Constants.cornerRadius
+        hideButton.addTarget(self, action: #selector(hideButtonPressed), for: .touchUpInside)
         
-        view.addSubview(button)
+        view.addSubview(hideButton)
         NSLayoutConstraint.activate([
-            button.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: Constants.buttonWidth),
-            button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            button.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: Constants.buttonTop)
+            hideButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: Constants.buttonWidth),
+            hideButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            hideButton.bottomAnchor.constraint(equalTo: stack.topAnchor, constant: Constants.buttonBottom)
         ])
     }
     
-    @objc func buttonAction(sender: UIButton!) {
+    private func configureAddWishButton() {
+        addWishButton.translatesAutoresizingMaskIntoConstraints = false
+        addWishButton.backgroundColor = .systemGray
+        addWishButton.setTitle(Constants.addWishButtonTitle, for: .normal)
+        addWishButton.layer.cornerRadius = Constants.cornerRadius
+        addWishButton.addTarget(self, action: #selector(addWishButtonPressed), for: .touchUpInside)
+        
+        view.addSubview(addWishButton)
+        NSLayoutConstraint.activate([
+            addWishButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: Constants.buttonWidth),
+            addWishButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            addWishButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: Constants.buttonBottom)
+        ])
+    }
+    
+    @objc
+    private func hideButtonPressed(sender: UIButton!) {
         stack.isHidden = !stack.isHidden
     }
     
-    let titleView = UILabel()
-    let descriptionView = UILabel()
-    let stack = UIStackView()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        configureUI()
-        view.backgroundColor = .systemPink
+    @objc
+    private func addWishButtonPressed(sender: UIButton!) {
+        present(WishStoringViewController(), animated: true)
     }
 }
